@@ -2,7 +2,7 @@
 
 ---
 
-**Behavioral Cloning Project**
+## Summary
 
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
@@ -10,7 +10,6 @@ The goals / steps of this project are the following:
 * Train and validate the model with a training and validation set
 * Test that the model successfully drives around track one without leaving the road
 * Summarize the results with a written report
-
 
 [//]: # (Image References)
 
@@ -25,53 +24,39 @@ The goals / steps of this project are the following:
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-### Files Submitted & Code Quality
+## Intro.
 
-#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
-
-My project includes the following files:
+This project is Udacity Self-driving car ND project to implement behavioral cloning based on the NVIDIA's [e2e learning for self-driving car](./end-to-end-dl-using-px.pdf). My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
-* writeup_report.md or writeup_report.pdf summarizing the results
 
-#### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
-
-#### 3. Submission code is usable and readable
-
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-### Model Architecture and Training Strategy
-
-#### 1. An appropriate model architecture has been employed
+## Model Architecture and Training Strategy
 
 My model consists of a convolution neural network with 5x5, 3x3 filter sizes and depths between 24 and 64 (model.py lines 101-105) 
 The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (code line 99). 
-
-#### 2. Attempts to reduce overfitting in the model
 
 The model contains dropout layers in order to reduce overfitting (model.py line 107, 109, and 111). 
 The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 41). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 I also used data augmentation for input images. Performing data augmentation is a form of regularization, enabling our model to generalize better.
 
-#### 3. Model parameter tuning
-
 The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 117).
 
-#### 4. Appropriate training data
+### 1. Dataset
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road, and recovering from off the road to on the road. In the process of data augmentation from initial 25020 to 67923, preprocessing them all in one shot caused memory error. Under assumption that our datasets are too large to fit into memory, i used Keras fit_generator function that allows back-propagation in batch and supports data augmentation on the fly.
+Training data was was captured from the output of Udacity's simulator and selected to keep the vehicle driving on the road. I used a combination of driving in the center of the lane, recovering from the left and right sides of the road, and recovering from off the road to on the road. In the process of data augmentation from initial 25020 to 67923, preprocessing them all in one shot caused memory error. Under assumption that our datasets are too large to fit into memory, i used Keras fit_generator function that allows back-propagation in batch and supports data augmentation on the fly.
 
 For details about how I created the training data, see the next section. 
 
-### Model Architecture and Training Strategy
 
-#### 1. Solution Design Approach
+### 2. Solution Design
 
 The overall strategy for deriving a model architecture was to enhance the model based on DAVE-2 model. My first step was to use a convolution neural network model similar to the it and make feature dimesions a little bigger. I left the depth of architecture(5 conv + 3 FC) might be appropriate because its parameters are only 250 thousand big and proven to be tractable.
 
@@ -83,7 +68,7 @@ The final step was to run the simulator to see how well the car was driving arou
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-#### 2. Final Model Architecture
+### 3. Model Architecture
 
 The final model architecture (model.py line 96 - 113) consisted of a convolution neural network with the following layers and layer sizes. The network has about 220 thousand parameters.
 
@@ -114,7 +99,7 @@ My final model consisted of the following layers:
 
 
 
-#### 3. Creation of the Training Set & Training Process
+### 4. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first utilized [sample driving data](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip) to train the network. The provided data from the class has video recording of several laps of driving on the first track and amounts to 25020 images. Driving on the simulator showed that the vehicle is drifting on and off the center of road. 
 
@@ -150,6 +135,5 @@ For the sencond track, however, i chose not to add the flip transformations. It 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used 10 epochs and adam optimizer so that manually training the learning rate wasn't necessary. Despite the small number of epochs, both training and validation loss steadily decrease together with little fluctuation druring training. And thier values show very close each other, meaning the model is not overfitting.
-
 
 ![alt text][image6]
