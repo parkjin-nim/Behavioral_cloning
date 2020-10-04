@@ -29,7 +29,7 @@ This project is Udacity Self-driving car ND project to implement behavioral clon
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 
-To run the code, you first need to check dependencies from [here](https://github.com/udacity/CarND-Term1-Starter-Kit) and install Udacity simulator from [here](https://github.com/udacity/self-driving-car-sim). After that, using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+To run the code, you first need to check dependencies from [here](https://github.com/udacity/CarND-Term1-Starter-Kit) and install Udacity simulator from [here](https://github.com/udacity/self-driving-car-sim). After that, using the simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
@@ -131,8 +131,8 @@ Driving straight forward, the vehicle wiggles a little, which was understandable
 
 Now the total number of images of data is 67923.
 
-**don't learn driving the opposite side of the lane**
-For the sencond track, however, i chose not to add the flip transformations. It is because there are two lanes in the second track  instead of one in the first track, and flipping the an image would make the vehicle look driving forward on the left lane of road. We probably don't want the model to learn it due to legal issues in some countries. So in order to make sure of the model not to be confused, there are no flipping transformations for the second track images.  
+**driving on two-lan road**
+For the sencond track, however, i chose not to add the flip transformations. Because it is two-lane road instead of one in the first track, and flipping the an image would make the vehicle look driving forward on the left lane of road. We probably don't want the model to learn it due to legal issues in some countries. So in order to make sure of the model not to be confused, there are no flipping transformations for the second track images.  
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
