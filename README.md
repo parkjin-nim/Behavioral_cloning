@@ -103,11 +103,9 @@ To capture good driving behavior, I first utilized [sample driving data](https:/
 
 ![alt text][image1]
 
-**correcting drift effect**
-I then augmented data by using images of the left side and right side of the road together. Since these images are a little off from the center, giving adjusted steering measurements for the side camera images is required in order to use them as training data. As a result, the vehicle successfully recovered from the left side and right sides of the road back to center, correcting the drift effect. 
+I then augmented data by using images of the left side and right side of the road together. Since these images are a little off from the center, giving adjusted steering measurements for the side camera images is required in order to use them as training data. As a result, the vehicle successfully recovered from the left side and right sides of the road back to center, **correcting the drift effect.**
 
-**learning sharp cornering**
-The observation of the simulation result of the vehicle trained by using only track 1 showed relatively okay behavior on a test drive on the tack 1. When closed to corners, however, the vehicle tend to react rather slowly to the sharp corner, barely avoiding collision with the corner stone. This may be because lack of learning enough cornering. Track 2 seems to have lots of sharp curves. Learning driving on track 2 should probably help solving this cornering issue. 'run_track1.mp4' video was taken at this stage of model, and 1:15 ~ 20 part of video shows this off-center issue when vehicle's cornering.
+The observation of the simulation result of the vehicle trained by using only track 1 showed relatively okay behavior on a test drive on the tack 1. When closed to corners, however, the vehicle tend to react rather slowly to the sharp corner, barely avoiding collision with the corner stone. This may be because lack of learning enough cornering. Track 2 seems to have lots of sharp curves. **Learning sharp cornering** on track 2 should probably help. 'run_track1.mp4' video was taken at this stage of model, and 1:15 ~ 20 part of video shows this off-center issue when vehicle's cornering.
 
 ![alt text][image2]
 
@@ -123,16 +121,13 @@ I also added several clips of recovering from the off-road to the center of road
 
 Indeed, the result of model trained by driving on both tracks showed much strong tendency to keep the vehicle in the center of road, even around sharp corners, successfully soving the cornering issue. 'run_track2.mp4' video was taken at the final stage of model, and it shows no off-center issue when vehicle's cornering. 
 
-**just good as much as the humans do**
-Driving straight forward, the vehicle wiggles a little, which was understandable considering my poor jittery arrow key control on many sharp curves of Track 2. Like it said in the behavioral cloning, the model seems to be as much good as the humans do.
+Driving straight forward, the vehicle wiggles a little, which was understandable considering my poor jittery arrow key control on many sharp curves of Track 2. Like it said in the behavioral cloning, the model seems to be **just good as much as the humans do.**
 
-**removing left-turn bias**
-[sample driving data](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip) provided by Udacity has left turn bias due to the data imbalance. This can be overcome using another augmentation of data as we did in the traffic sign classification. In this case, i preprocessed data by giving flip transformations to double the original data so that the model learn driving opposite direction at the same time. 
+[sample driving data](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip) provided by Udacity has **left turn bias** due to the data imbalance. This can be overcome using another augmentation of data as we did in the traffic sign classification. In this case, i preprocessed data by giving flip transformations to double the original data so that the model learn driving opposite direction at the same time. 
 
 Now the total number of images of data is 67923.
 
-**driving on two-lan road**
-For the sencond track, however, i chose not to add the flip transformations. Because it is two-lane road instead of one in the first track, and flipping the an image would make the vehicle look driving forward on the left lane of road. We probably don't want the model to learn it due to legal issues in some countries. So in order to make sure of the model not to be confused, there are no flipping transformations for the second track images.  
+For the sencond track, however, i chose not to add the flip transformations. Because it is **two-lane road** instead of one in the first track, and flipping the an image would make the vehicle look driving forward on the left lane of road. We probably don't want the model to learn it due to legal issues in some countries. So in order to make sure of the model not to be confused, there are no flipping transformations for the second track images.  
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
