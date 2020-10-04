@@ -5,7 +5,7 @@
 ## Summary
 
 This project is based on NVIDIA's [e2e learning for self-driving car](./end-to-end-dl-using-px.pdf). 
-The goal is to implent the idea as an assignment in the course of Udacity Self-driving car ND.
+The goal is to implement the idea as an assignment in the course of Udacity Self-driving car ND.
 Steps are the following:
 * Use the simulator to collect data of good driving behavior
 * Build, a convolution neural network in Keras that predicts steering angles from images
@@ -123,7 +123,7 @@ I also added several clips of recovering from the off-road to the center of road
 
 Indeed, the result of model trained by driving on both tracks showed much strong tendency to keep the vehicle in the center of road, even around sharp corners, successfully soving the cornering issue. 'run_track2.mp4' video was taken at the final stage of model, and it shows no off-center issue when vehicle's cornering. 
 
-**immitation learning meaning just good as much as the humans do**
+**just good as much as the humans do**
 Driving straight forward, the vehicle wiggles a little, which was understandable considering my poor jittery arrow key control on many sharp curves of Track 2. Like it said in the behavioral cloning, the model seems to be as much good as the humans do.
 
 **removing left-turn bias**
@@ -139,3 +139,6 @@ I finally randomly shuffled the data set and put 20% of the data into a validati
 I used 10 epochs and adam optimizer so that manually training the learning rate wasn't necessary. Despite the small number of epochs, both training and validation loss steadily decrease together with little fluctuation druring training. And thier values show very close each other, meaning the model is not overfitting.
 
 ![alt text][image6]
+
+## Outro.
+
